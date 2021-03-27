@@ -1,6 +1,9 @@
-# Angular Rust
++++
+title = "Angular Rust"
+sort_by = "weight"
++++
 
-<img align="right" width="150" height="150" src="/content/ruex.svg">
+# Angular Rust
 
 **Angular Rust** is an intuitive, elegant, and responsive Zola theme for product sites.
 
@@ -10,9 +13,26 @@
 - Responsive and mobile device compatible
 - Customize and extend friendly
 
-https://angular-rust.github.io
+## Consistency
+- Consistent with real life: in line with the process and logic of real life, and comply with languages and habits that the users are used to.
+- Consistent within interface: all elements should be consistent, such as: design style, icons and texts, position of elements, etc.
+
+## Feedback
+- Operation feedback: enable the users to clearly perceive their operations by style updates and interactive effects.
+- Visual feedback: reflect current state by updating or rearranging elements of the page.
+
+## Efficiency
+- Simplify the process: keep operating process simple and intuitive.
+- Definite and clear: enunciate your intentions clearly so that the users can quickly understand and make decisions.
+- Easy to identify: the interface should be straightforward, which helps the users to identify and frees them from memorizing and recalling.
+
+## Controllability
+- Decision making: giving advices about operations is acceptable, but do not make decisions for the users.
+- Controlled consequences: users should be granted the freedom to operate, including canceling, aborting or terminating current operation.
 
 # Installation
+
+> **Zola** is a prerequisite. Please refer to the [Zola installation](https://www.getzola.org/documentation/getting-started/installation/) docs.
 
 First download this theme to your `themes` directory:
 
@@ -34,13 +54,20 @@ theme = "ruex"
 
 # Structure
 
-### Hero
+## Hero
 
 **Angular Rust** is designed for product websites, hence we let **hero** part fills whole of screen.
 You can customize your **hero** by using `hero` block in the `index.html`.
 
+```html
+{% block hero %}
+    <div>
+        Your cool hero html...
+    </div>
+{% endblock hero %}
+```
 
-### Page
+## Page
 
 Every markdown file located in `content` directory will become a **Page**. There also will display as
 a navigate link on the top-right corner. 
@@ -55,7 +82,7 @@ weight = 2
 
 ```
 
-### CSS variables
+## CSS variables
 
 You can override theme variable by creating a file named `_variables.html` in your `templates` directory.
 
@@ -88,84 +115,6 @@ logo_path = "ruex.svg"
 extra_menu = [
     { title = "Github", link = "https://github.com/angular-rust/ruex"}
 ]
-```
-## Theme 
-
-Primary #409EFF
-Success #67C23A
-Warning #E6A23C
-Danger #F56C6C
-Info #909399
-Primary Text #303133
-Regular Text #606266
-Secondary Text #909399
-Placeholder #C0C4CC
-Border Base #DCDFE6
-Border Light #E4E7ED
-Border Lighter #EBEEF5
-Border Extralight #F2F6FC
-Background B #000000
-Background W #FFFFFF
-Background Transparent
-
-#17212F
-#152030
-#0D1520
-#2A4058
-#12202F
-#168AFD
-#E55074
-#1581EE
-#16ADCA
-#FFFFFF
-#0C6291
-#4D87F2
-#4D87F1
-#0C6291
-
-#121A26
-#40C4FF
-#1C2834
-
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap');
-
-## Page front-matter
-```
-title = ""
-description = ""
-date =
-weight = 0
-draft = false
-slug = ""
-path = ""
-aliases = []
-in_search_index = true
-template = "page.html"
-
-[taxonomies]
-tags = ["rust", "web"]
-
-[extra]
-```
-
-## Section front-matter
-```
-title = ""
-description = ""
-sort_by = "none"
-weight = 0
-template = "section.html"
-page_template =
-paginate_by = 0
-paginate_path = "page"
-insert_anchor_links = "none"
-in_search_index = true
-render = true
-redirect_to = ""
-transparent = false
-aliases = []
-
-[extra]
 ```
 
 # Showcases
