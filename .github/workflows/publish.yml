@@ -2,7 +2,7 @@
 
 # On every push this script is executed
 on: push
-name: Build and deploy GH Pages
+name: Publish documentation
 jobs:
   build:
     name: Deploy
