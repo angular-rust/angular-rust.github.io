@@ -8,9 +8,10 @@
 </a>
 
 <nav>
-    {% for page in section.pages %}
+    <!-- {% for page in section.pages %}
     <a class="nav-item subtitle-text" href="{{ page.permalink }}">{{ page.title }}</a>
-    {% endfor %}
+    {% endfor %} -->
+
     {% if config.extra.extra_menu %}
         {% for menu in config.extra.extra_menu %}
         <a class="nav-item subtitle-text" href="{{ menu.link }}">{{ menu.title }}</a>

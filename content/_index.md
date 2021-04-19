@@ -14,13 +14,14 @@ sort_by = "weight"
 - Responsive and mobile device compatible.
 - Customize and extend friendly.
 
-## Geting Started
+## Get Started
 
 Lets write simple program, old school call it `Hello Angular Rust`.
 
 > I am using Ubuntu for this tutorial. For Windows and MacOSX, the steps are not very different, but I will write the instructions a little later.
 
 There are some requirements for installed packages.
+
 ```bash
 $ sudo apt-get install libcogl-dev libclutter-1.0-dev libpango1.0-dev
 ```
@@ -35,15 +36,16 @@ $ cargo init --bin
 ```
 
 Cargo has created a folder structure as shown below:
-```bash
-├── Cargo.toml
-└── src
-    └── main.rs
-```
+
+<div style="text-align:center; margin-bottom: 20px">
+    <img width="274" height="202" src="/imgs/get-started/justapp-folder.png" alt="Folder Structure">
+</div>
 
 Then add Angular Rust dependencies to your project. The `UX Framework` is the main starting point for getting started with developing Angular Rust applications.
-It allows for a shortcut to access Angular Rust components and allows you to maintain consistent internal Angular Rust dependencies. 
-Let's do it from the terminal using `cargo-edit`. If you haven't installed `cargo-edit`, just `cargo install cargo-edit`;
+It allows you to shorten the path for accessing Angular Rust components and allows you to maintain consistent internal Angular Rust dependencies. 
+Let's do it from the terminal using `cargo-edit`. 
+
+> If you haven't installed `cargo-edit`, just `cargo install cargo-edit`
 
 ```bash 
 $ cargo add ux-framework
@@ -97,7 +99,7 @@ struct Application {
 ```
 
 If we run it again, we will see the same picture as before - nothing is happening.
-Let's configure our application window and show it. Change the `new` function of our application as shown bellows.
+Let's configure our application window and show it. Change the `new` method of our application as shown bellows.
 
 ```rust
 fn new() -> Self {
@@ -123,7 +125,11 @@ It's time to see our app.
 $ cargo r
 ```
 
-Let me explain what we have written in the `new` function of our application. 
+<div style="text-align:center; margin-bottom: 20px">
+    <img width="512" height="541" src="/imgs/get-started/justapp.png" alt="Angular Rust Application">
+</div>
+
+Let me explain what we have written in the `new` method of our application.
 
 1. We created the structure of our application as before, but saved it in a variable to access the application window.
 
@@ -157,7 +163,13 @@ app.window.set_background_color(Some(color::TEAL_9));
 
 5. Finally, we return an instance of our application, by last line `app`.
 
-### Whats next
+**Final code**
+
+<div style="text-align:center; margin-bottom: 20px">
+    <img width="580" height="580" src="/imgs/get-started/justapp-code.png" alt="Angular Rust Application Code">
+</div>
+
+## What's next
 
 Tutorials will come here every day. The work is being actively carried out.
 

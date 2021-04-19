@@ -55,7 +55,7 @@ languages = []
 compile_sass = true
 
 # When set to "true", the generated HTML files are minified.
-minify_html = true
+minify_html = false
 
 # A list of glob patterns specifying asset files to ignore when the content
 # directory is processed. Defaults to none, which means that all asset files are
@@ -77,7 +77,6 @@ highlight_code = true
 # The theme to use for code highlighting.
 # See below for list of allowed values.
 highlight_theme = "inspired-github"
-# highlight_theme = "base16-ocean-dark"
 
 # When set to "true", emoji aliases translated to their corresponding
 # Unicode emoji equivalent in the rendered Markdown files. (e.g.: :smile: => 😄)
