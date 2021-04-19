@@ -5,127 +5,166 @@ sort_by = "weight"
 
 # Angular Rust
 
-**Angular Rust** is an intuitive, elegant, and responsive Zola theme for product sites.
+**Angular Rust** is a high productivity, `platform-agnostic` frontend framework for the Rust language. It now supports desktop and web development. Angular Rust currently uses Clutter for desktop development and WebAssembly for web development. We are planning to add support for mobile development.
 
-- Build for product sites
-- Simple and intuitive structure
-- Clean and elegant design 
-- Responsive and mobile device compatible
-- Customize and extend friendly
+- Simple starting point to development.
+- Utilize OpenGL >=1.4, OpenGL ES 1.1 and OpenGL ES 2.0.
+- Transparently utilize Cairo and HTML5 Canvas.
+- Have an advanced animation features.
+- Responsive and mobile device compatible.
+- Customize and extend friendly.
 
-## Consistency
-- Consistent with real life: in line with the process and logic of real life, and comply with languages and habits that the users are used to.
-- Consistent within interface: all elements should be consistent, such as: design style, icons and texts, position of elements, etc.
+## Geting Started
 
-## Feedback
-- Operation feedback: enable the users to clearly perceive their operations by style updates and interactive effects.
-- Visual feedback: reflect current state by updating or rearranging elements of the page.
+Lets write simple program, old school call it `Hello Angular Rust`.
 
-## Efficiency
-- Simplify the process: keep operating process simple and intuitive.
-- Definite and clear: enunciate your intentions clearly so that the users can quickly understand and make decisions.
-- Easy to identify: the interface should be straightforward, which helps the users to identify and frees them from memorizing and recalling.
+> I am using Ubuntu for this tutorial. For Windows and MacOSX, the steps are not very different, but I will write the instructions a little later.
 
-## Controllability
-- Decision making: giving advices about operations is acceptable, but do not make decisions for the users.
-- Controlled consequences: users should be granted the freedom to operate, including canceling, aborting or terminating current operation.
+There are some requirements for installed packages.
+```bash
+$ sudo apt-get install libcogl-dev libclutter-1.0-dev libpango1.0-dev
+```
+> you may also need to run `sudo apt-get update` before installing packages. 
 
-# Installation
-
-> **Zola** is a prerequisite. Please refer to the [Zola installation](https://www.getzola.org/documentation/getting-started/installation/) docs.
-
-First download this theme to your `themes` directory:
+Just create new project. I prefer to create folder for my new project and then initialize project. So:
 
 ```bash
-$ cd themes
-$ git clone https://github.com/angular-rust/ruex.git
+$ mkdir justapp
+$ cd justapp
+$ cargo init --bin
 ```
 
-or add as a submodule
+Cargo has created a folder structure as shown below:
 ```bash
-$ git submodule add https://github.com/angular-rust/ruex  themes/ruex
+├── Cargo.toml
+└── src
+    └── main.rs
 ```
 
-and then enable it in your `config.toml`:
+Then add Angular Rust dependencies to your project. The `UX Framework` is the main starting point for getting started with developing Angular Rust applications.
+It allows for a shortcut to access Angular Rust components and allows you to maintain consistent internal Angular Rust dependencies. 
+Let's do it from the terminal using `cargo-edit`. If you haven't installed `cargo-edit`, just `cargo install cargo-edit`;
 
-```toml
-theme = "ruex"
+```bash 
+$ cargo add ux-framework
 ```
 
-# Structure
+Replace the code in the `main.rs` file
 
-## Hero
+```rust
+use ux::prelude::*;
 
-**Angular Rust** is designed for product websites, hence we let **hero** part fills whole of screen.
-You can customize your **hero** by using `hero` block in the `index.html`.
+#[derive(Default, Application)]
+struct Application;
 
-```html
-{% block hero %}
-    <div>
-        Your cool hero html...
-    </div>
-{% endblock hero %}
-```
-
-## Page
-
-Every markdown file located in `content` directory will become a **Page**. There also will display as
-a navigate link on the top-right corner. 
-You can change the frontmatter's `weight` value to sort the order (ascending order).
-
-```
-+++
-title = "Changelog"
-description = "Changelog"
-weight = 2
-+++
-
-```
-
-## CSS variables
-
-You can override theme variable by creating a file named `_variables.html` in your `templates` directory.
-
-```html
-<style>
-    :root {
-        /* Primary theme color */
-        --primary-color: #FED43F;
-        /* Primary theme text color */
-        --primary-text-color: #543631;
-        /* Primary theme link color */
-        --primary-link-color: #F9BB2D;
-        /* Secondary color: the background body color */
-        --secondary-color: #fcfaf6;
-        --secondary-text-color: #303030;
-        /* Highlight text color of table of content */
-        --toc-highlight-text-color: #d46e13;
+impl Application {
+    fn new() -> Self {
+        Default::default()
     }
-</style>
+}
+
+fn main() {
+    Application::run();
+}
 ```
 
-# Configuration
+Let's run it from terminal:
 
-You can customize some builtin property in `config.toml` file:
-
-```toml
-[extra]
-logo_name = "Angular Rust"
-logo_path = "ruex.svg"
-extra_menu = [
-    { title = "Github", link = "https://github.com/angular-rust/ruex"}
-]
+```bash
+$ cargo r
 ```
 
-# Showcases
+**Oooh ... What's going on?**
 
-Please see the [showcases page](/showcases).
+You just launched the application and it works, but nothing happens.
+Let's make it more visible to see our application. 
 
-# Contributing
+> press `Ctrl+C` in terminal to exit our application 
 
-Thank you very much for considering contributing to this project!
+Add this line closer to the beginning of our source. This will allow us to use the window in our application. 
 
-We appreciate any form of contribution:
+```rust
+use ux::Window;
+```
 
-- New issues (feature requests, bug reports, questions, ideas, ...)
-- Pull requests (documentation improvements, code improvements, new features, ...)
+I am assuming that the window must belong to our application. So let's change the `Application` struct as shown below.
+
+```rust
+#[derive(Default, Application)]
+struct Application {
+    window: Window,
+}
+```
+
+If we run it again, we will see the same picture as before - nothing is happening.
+Let's configure our application window and show it. Change the `new` function of our application as shown bellows.
+
+```rust
+fn new() -> Self {
+    let app: Self = Default::default();
+    app.window
+        .show()
+        .set_window_size(512, 512)
+        .set_resizable(true)
+        .set_title("Sample window")
+        .connect_destroy(move |_win| {
+            Application::quit()
+        });
+    
+    app.window.set_background_color(Some(color::TEAL_9));
+    
+    app
+}
+```
+
+It's time to see our app.
+
+```bash
+$ cargo r
+```
+
+Let me explain what we have written in the `new` function of our application. 
+
+1. We created the structure of our application as before, but saved it in a variable to access the application window.
+
+```rust
+let app: Self = Default::default();
+```
+
+2. Below we have customized our window and shown it. We have set the initial window size and allowed the application window to be resized. Then we changed the title of our window.
+
+```rust
+app.window
+    .show()
+    .set_window_size(512, 512)
+    .set_resizable(true)
+    .set_title("Sample window")
+```
+3. I would like the application to exit correctly when the window is closed. For this, we added a handler for the "window-destroy" event to properly exit our application.
+
+```rust
+...
+    .connect_destroy(move |_win| {
+        Application::quit()
+    });
+```
+
+4. We painted our window in TEAL color because - `Rake Likes This`. 
+
+```rust
+app.window.set_background_color(Some(color::TEAL_9));
+```
+
+5. Finally, we return an instance of our application, by last line `app`.
+
+### Whats next
+
+Tutorials will come here every day. The work is being actively carried out.
+
+- Read the documentation for `UX Framework` of Angular Rust on [docs.rs](https://docs.rs/ux-framework). 
+    
+    The documentation is organized in a flat format. So the documentation for the entire framework is in one place. If you want to get information on specific properties in a more concentrated manner, then refer to the modules. I find this approach very convenient.
+
+- Join US on social media: [reddit](https://www.reddit.com/r/angular_rust/)
+
+**Happy coding!**
