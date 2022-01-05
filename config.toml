@@ -160,3 +160,22 @@ logo_path = "angular-rust.svg"
 extra_menu = [
     { title = "Github", link = "https://github.com/angular-rust" }
 ]
+
+[extra.comment.giscus]
+
+repo = "angular-rust/angular-rust.github.io"
+repo_id = "MDEwOlJlcG9zaXRvcnkzMzY3MzIxNTA="
+category = "General"
+category_id = "DIC_kwDOFBIf9s4CAjjd"
+mapping = "pathname"
+reactions_enabled = "1"
+emit_metadata = "0"
+theme = "light"
+lang = "en"
+crossorigin = "anonymous"
+
+[extra.google]
+analytics_id = "G-MNEFM7ESF2"
+
+[extra.yandex]
+metrika_id = "87064278"
